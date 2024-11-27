@@ -34,10 +34,34 @@ ui <- fluidPage(
           )
         ),
         
-        ##Sociodemográfico
+        # Sociodemográico
         
         tabPanel(
           "Sociodemográfico",
+          sidebarLayout(
+            sidebarPanel(
+              selectInput(
+                "variable_sociodemografico",
+                "Selecciona la variable de cruce:",
+                choices = c(
+                  "grupos_etarios",
+                  "¿Te consideras parte de la comunidad LGTBIQ+?",
+                  "¿Cómo te identificas?...6"
+                )
+              )
+            ),
+            mainPanel(
+              h3("Cruce entre Género y Variable Seleccionada"),
+              plotOutput("grafico_dinamico_socio")
+            )
+          )
+        ),
+        
+        
+        ##Autoreporte 1
+        
+        tabPanel(
+          "Autoreporte",
           sidebarLayout(
             sidebarPanel(
               selectInput(
@@ -194,7 +218,7 @@ ui <- fluidPage(
           sidebarLayout(
             sidebarPanel(
               selectInput(
-                "variable_dinamicas",
+                "variable_normas",
                 "Selecciona una variable para el análisis:",
                 choices = c(
                   "Imagine que en esta empresa, un grupo de mujeres está hablando mal de otra mujer. ¿Cuál sería la razón por la que se hablaría mal de ella?",
@@ -209,7 +233,7 @@ ui <- fluidPage(
             ),
             mainPanel(
               h3("Cruce entre Género y Dinámica Seleccionada"),
-              plotOutput("grafico_dinamicas_dinamico")
+              plotOutput("grafico_normas_dinamico")
             )
           )
         )
