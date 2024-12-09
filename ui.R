@@ -1,7 +1,6 @@
 library(shiny)
 library(DT)
 
-# UI del Dashboard
 ui <- fluidPage(
   titlePanel("Reporte de Resultados - Diagnóstico Programa Generando Equidad"),
   sidebarLayout(
@@ -11,31 +10,22 @@ ui <- fluidPage(
     ),
     mainPanel(
       tabsetPanel(
+        # Pestaña: Formación enfoque de género
         tabPanel(
-          "Tabla dinámica",
-          fluidRow(
-            column(
-              width = 12,
-              div(
-                HTML("<p><strong>Descripción:</strong> Este tablero muestra un resumen descriptivo de los diagnósticos realizado en <em>Casa Luker, Cueros Vélez, y Sumasacha</em>.</p>")
-              )
-            )
-          ),
-          fluidRow(
-            column(
-              width = 6,
-              DTOutput("tabla")  # La tabla dinámica
+          "Formación",
+          sidebarLayout(
+            sidebarPanel(
+              h4("Formación en enfoque de género")
             ),
-            column(
-              width = 6,
-              h3("Formación en Enfoque de Género"),
-              plotOutput("grafico_formacion_genero")
+            mainPanel(
+              plotOutput("grafico_dinamico_formacion"),
+              downloadButton("descargar_grafico_formacion", "Descargar Gráfico"),
+              downloadButton("descargar_datos_formacion", "Descargar Datos")
             )
           )
         ),
         
-        # Sociodemográico
-        
+        # Pestaña: Sociodemográfico
         tabPanel(
           "Sociodemográfico",
           sidebarLayout(
@@ -51,15 +41,14 @@ ui <- fluidPage(
               )
             ),
             mainPanel(
-              h3("Cruce entre Género y Variable Seleccionada"),
-              plotOutput("grafico_dinamico_socio")
+              plotOutput("grafico_dinamico_socio"),
+              downloadButton("descargar_grafico_socio", "Descargar Gráfico"),
+              downloadButton("descargar_datos_socio", "Descargar Datos")
             )
           )
         ),
         
-        
-        ##Autoreporte 1
-        
+        # Pestaña: Autoreporte
         tabPanel(
           "Autoreporte",
           sidebarLayout(
@@ -76,16 +65,16 @@ ui <- fluidPage(
               )
             ),
             mainPanel(
-              h3("Cruce entre Género y Variable Seleccionada"),
-              plotOutput("grafico_dinamico")
+              plotOutput("grafico_dinamico_autoreporte"),
+              downloadButton("descargar_grafico_autoreporte", "Descargar Gráfico"),
+              downloadButton("descargar_datos_autoreporte", "Descargar Datos")
             )
           )
         ),
         
-        #Reporte de Violencias
-        
+        # Pestaña: Reporte de Violencias
         tabPanel(
-          "Autoreporte comportamental",
+          "Violencias",
           sidebarLayout(
             sidebarPanel(
               selectInput(
@@ -101,14 +90,14 @@ ui <- fluidPage(
               )
             ),
             mainPanel(
-              h3("Cruce entre Género y Variable Seleccionada en Reporte de Violencias"),
-              plotOutput("grafico_violencias_dinamico")
+              plotOutput("grafico_dinamico_violencias"),
+              downloadButton("descargar_grafico_violencias", "Descargar Gráfico"),
+              downloadButton("descargar_datos_violencias", "Descargar Datos")
             )
           )
         ),
         
-        ##Emociones
-        
+        # Pestaña: Emociones
         tabPanel(
           "Emociones",
           sidebarLayout(
@@ -123,14 +112,14 @@ ui <- fluidPage(
               )
             ),
             mainPanel(
-              h3("Emociones"),
-              plotOutput("grafico_emociones_dinamico")
+              plotOutput("grafico_dinamico_emociones"),
+              downloadButton("descargar_grafico_emociones", "Descargar Gráfico"),
+              downloadButton("descargar_datos_emociones", "Descargar Datos")
             )
           )
         ),
         
-        #Creencias
-        
+        # Pestaña: Creencias
         tabPanel(
           "Creencias",
           sidebarLayout(
@@ -144,28 +133,19 @@ ui <- fluidPage(
                   "Los hombres quisieran manejar mejor sus emociones pero no saben cómo",
                   "Es irrespetuoso que dos personas del mismo sexo se expresen afecto públicamente",
                   "Las mujeres y los hombres tienen habilidades distintas y por eso se complementan",
-                  "Hoy en día, se exagera con la igualdad entre hombres y mujeres",
-                  "Si una mujer expresa su gusto por otras mujeres, es normal que sus compañeras se sientan incómodas frente a ella",
-                  "En esta empresa, “se dan más duro” entre mujeres que entre hombres",
-                  "En general, los hombres son menos emocionales que las mujeres",
-                  "Es entendible que, en la empresa, los hombres comenten y se sientan atraídos frente a los cuerpos de las mujeres.",
-                  "Si un hombre expresa su gusto por otros hombres, es normal que sus compañeros se sientan incómodos frente a él",
-                  "Es normal que las mujeres sientan envidia por la belleza de otras mujeres",
-                  "En general, el hombre propone y la mujer dispone",
-                  "En general, los hombres son mejores líderes que las mujeres porque son más objetivos y menos emocionales",
-                  "Los hombres no saben pedir ayuda cuando lo necesitan",
-                  "En esta empresa, la mayoría de las personas trans se sienten tratadas equitativa e incluyentemente"
+                  "Hoy en día, se exagera con la igualdad entre hombres y mujeres"
                 )
               )
             ),
             mainPanel(
-              h3("Cruce entre Género y Afirmación Seleccionada"),
-              plotOutput("grafico_creencias_dinamico")
+              plotOutput("grafico_dinamico_creencias"),
+              downloadButton("descargar_grafico_creencias", "Descargar Gráfico"),
+              downloadButton("descargar_datos_creencias", "Descargar Datos")
             )
           )
         ),
         
-        ##Desconocimiento
+        # Pestaña: Desconocimiento
         tabPanel(
           "Desconocimiento",
           sidebarLayout(
@@ -183,13 +163,14 @@ ui <- fluidPage(
               )
             ),
             mainPanel(
-              h3("Desconocimiento"),
-              plotOutput("grafico_percepciones_dinamico")
+              plotOutput("grafico_dinamico_percepciones"),
+              downloadButton("descargar_grafico_percepciones", "Descargar Gráfico"),
+              downloadButton("descargar_datos_percepciones", "Descargar Datos")
             )
           )
         ),
         
-        ##Valores
+        # Pestaña: Valores
         tabPanel(
           "Valores",
           sidebarLayout(
@@ -204,15 +185,14 @@ ui <- fluidPage(
               )
             ),
             mainPanel(
-              h3("Valores"),
-              plotOutput("grafico_valores_dinamico")
+              plotOutput("grafico_dinamico_valores"),
+              downloadButton("descargar_grafico_valores", "Descargar Gráfico"),
+              downloadButton("descargar_datos_valores", "Descargar Datos")
             )
           )
         ),
         
-        
-        #Dinámicas laborales
-        
+        # Pestaña: Normas Sociales
         tabPanel(
           "Normas sociales",
           sidebarLayout(
@@ -222,7 +202,6 @@ ui <- fluidPage(
                 "Selecciona una variable para el análisis:",
                 choices = c(
                   "Imagine que en esta empresa, un grupo de mujeres está hablando mal de otra mujer. ¿Cuál sería la razón por la que se hablaría mal de ella?",
-                  #"Cuéntanos ¿cuál, o cuáles, serían las razones por las que se hablaría mal de una mujer en la empresa?",
                   "Imagine que en esta empresa, un grupo de hombres se está burlando de otro hombre. ¿Cuál sería la razón por la que se estarían burlando de él?",
                   "En esta empresa, escuchar atentamente es más común en",
                   "En esta empresa, comunicarse asertivamente es más común en:",
@@ -232,17 +211,15 @@ ui <- fluidPage(
               )
             ),
             mainPanel(
-              h3("Cruce entre Género y Dinámica Seleccionada"),
-              plotOutput("grafico_normas_dinamico")
+              plotOutput("grafico_dinamico_normas"),
+              downloadButton("descargar_grafico_normas", "Descargar Gráfico"),
+              downloadButton("descargar_datos_normas", "Descargar Datos")
             )
           )
         )
-        
-        
-        
-        
       )
     )
   )
 )
+
 

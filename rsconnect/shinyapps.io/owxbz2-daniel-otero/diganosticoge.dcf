@@ -1,13 +1,12 @@
 name: diganosticoge
-title:
+title: diganosticoGE
 username: owxbz2-daniel-otero
 account: owxbz2-daniel-otero
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 13392680
-bundleId: 9421933
+bundleId: 9490547
 url: https://owxbz2-daniel-otero.shinyapps.io/diganosticoge/
 version: 1
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: .secrets/7a6077d23f6776ccc63f8f70bc12b214_plural.json
